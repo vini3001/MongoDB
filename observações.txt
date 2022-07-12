@@ -1,0 +1,43 @@
+//requisitos para filtrar conteúdos no mongodb
+{$gt} = maior do que
+{$gte} = maior ou igual a
+{$lt} = menor que
+{$lte} = menor ou igual a
+
+obs: os requisitos listados a cima geralmente são usados no comando ".find"
+
+//como selecionar uma propriedade dentro de um objeto no mongodb
+"nome.firstName" /o primeiro nome é o objeto e o segundo após o ponto é a propriedade
+
+//comandos para filtrar conteúdos no mongodb
+.find({})
+.findOne()
+.findById()
+
+//ordenando conteúdos
+.find({}).sort({}) /O método ".sort" é responsável por ordenar o conteúdo do banco de dados
+/o número "1" apresenta os resultados da filtragem em ordem crescente e o número "-1" em ordem decrescente
+
+//como limitar o conteúdo mostrado por página no mongodb
+.skip().limit() /"skip" pula um determinado número de registros no banco de dados e o "limit" estipula um limite de registros a ser mostrado na página
+
+//como criar um novo usuário no banco de dados mongodb
+1ª forma:
+    await users.create({
+    NewUser.name = {firstName: "Carlos"}
+    NewUser.idade = 16})
+2ª forma:
+    let NewUser = new users()
+    NewUser.name = {firstName: "Carlos"}
+    NewUser.idade = 16
+    await NewUser.save()
+
+//como atualizar dados no banco de dados mongodb
+1ª forma:
+    await users.updateMany({}, {}) //recebe dois parâmetros: o primeiro é pra achar o usuário e o segundo oq vai atualizar nele
+2ª forma:
+    await users.updateOne({}, {}) //recebe dois parâmetros: o primeiro é pra achar os usuários e o segundo oq vai atualizar nele
+3ª forma:
+    let usuario = await users.findOne({})
+    usuario.name = {{alterações}}
+    usuario.save() //armazena o usuário encontrado na variável e depois salva as alterações no banco de dados

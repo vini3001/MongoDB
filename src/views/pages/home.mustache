@@ -1,38 +1,24 @@
 {{>partials/header}}
+    <h1>Insira um novo usuário</h1>
 
-Opa {{name}} {{lastName}}, tudo bem?
-{{#showOld}}
-    Como vai a vida?
-{{/showOld}}
-{{^showOld}}
-    Beleza?
-{{/showOld}}
-
-<hr/>
-<h2>Produtos</h2>
+<form method="POST" action="/cadastro">
+    <input type="text" name="firstName" placeHolder="Insira o nome do usuário"/><br/>
+    <input type="text" name="middleName" placeHolder="Insira o sobrenome do usuário"/><br/>
+    <input type="number" name="age" placeHolder="Insira a idade do usuário"/><br/>
+    <input type="text" name="interests" placeHolder="Insira os interesses do usuário(separar por vírgula)"/><br/>
+    <input type="submit" name="send" value="enviar"/>
+    <input type="submit" name="exclude" value="excluir"/>
+</form>
+    <h2>Usuários do Banco de Dados</h2>
+    <hr/>
 <ul>
-    {{#products}}
-        {{>partials/productItem}}
-    {{/products}}
+{{#usuarios}}
+    <li>
+        nome: {{name.firstName}} - idade: {{age}} 
+        <a href="/cadastro/{{id}}/age-add">+</a>
+        <a href="/cadastro/{{id}}/age-remove">-</a>
+        <a href="/cadastro/{{id}}/delete">delete</a>
+    </li>
+{{/usuarios}}
 </ul>
-
-<hr/>
-<h2>Produtos a partir de R$ 12</h2>
-<ul>
-    {{#expensives}}
-        {{>partials/productItem}}
-    {{/expensives}}
-</ul>
-
-<hr/>
-
-<ul>
-    {{#frasesDoDia}}
-        <li>{{.}}</li>
-    {{/frasesDoDia}}
-    {{^frasesDoDia}}
-        Não há frases motivacionais hoje.
-    {{/frasesDoDia}}
-</ul>
-
 {{>partials/footer}}
